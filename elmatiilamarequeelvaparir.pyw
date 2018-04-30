@@ -57,7 +57,8 @@ def download(year,month,day,hour):
     hour_str = "%02d" % hour
     current_hour=hour
     print("Downloading "+year_str+"/"+month_str+"/"+day_str+"  " + hour_str + ":00")
-    url="http://ondemand.radioflaixbac.cat/podcast/" + year_str + month_str + day_str + hour_str + "0001.mp3?force_download"
+    url="http://ondemand.radioflaixbac.cat/podcast/" + year_str + month_str + day_str + hour_str + "0002.mp3?force_download"
+
     filename=get_filename(year,month,day,hour)
     
     # if filename exists then skip
@@ -74,6 +75,9 @@ def download(year,month,day,hour):
         s = ttk.Style()
         s.configure("red.Horizontal.TProgressbar", troughcolor ='gray', background='red')
         pgInterval[hour-firstHour].config(style="red.Horizontal.TProgressbar", value=50)
+    else:
+        global cbInterval
+        vars[hour-firstHour].set(0)
     print("\n")
 
 def download_today():
