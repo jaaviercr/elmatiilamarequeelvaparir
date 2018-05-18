@@ -111,6 +111,21 @@ def open_directory():
     dir_path = os.path.dirname(os.path.realpath(__file__))
     subprocess.Popen(r'explorer "'+dir_path+'"')
 
+def clean_older():
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    import re
+    files = [f for f in os.listdir('.') if re.match(r'[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_[0-9][0-9]\.mp3', f)]
+    
+    now = datetime.datetime.now()
+    year_str = "%04d" % now.year
+    month_str = "%02d" % now.month
+    day_str = "%02d" % now.day
+    today=year_str + month_str + day_str
+    for f in files:
+        if f[0:8] < today:
+            os.remove(f)
+    
+    
 def main():
     global w
     global current_hour
@@ -162,6 +177,9 @@ def main():
     
     bOpenDirectory = ttk.Button(f, text="Open directory", command=open_directory)
     bOpenDirectory.grid(columnspan=2)
+    
+    bClean = ttk.Button(f, text="Clean older", command=clean_older)
+    bClean.grid(columnspan=2)
     
     f.grid(row=0, column=0)
     w.rowconfigure(0, weight=1)
