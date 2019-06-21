@@ -91,18 +91,18 @@ def download_today():
     month = now.month
     day = now.day
     
-    for i in range(0,4):
+    for i in range(len(cbInterval)):
         cbInterval[i].config(state=Tkinter.DISABLED)
         if(vars[i].get()):
             pgInterval[i].config(value=0)
     bDownload.config(state=Tkinter.DISABLED)
     
-    for i in range(0,4):
+    for i in range(len(cbInterval)):
         hour=i+firstHour
         if(vars[i].get()):
             download(year,month,day,hour)
     
-    for i in range(0,4):
+    for i in range(len(cbInterval)):
         cbInterval[i].config(state=Tkinter.NORMAL)
     bDownload.config(state=Tkinter.NORMAL)
 
@@ -148,11 +148,11 @@ def main():
     month = now.month
     day = now.day
     
-    for i in range(0,4):
+    for i in range(0,5):
         hour=i+firstHour
         var = Tkinter.IntVar()
         var.set(1)
-        txt = "0"+str(hour)+":00"
+        txt = "{:02}".format(hour)+":00"
         cb = ttk.Checkbutton(f, text=txt, variable=var)
         cbInterval.append(cb)
         vars.append(var)
