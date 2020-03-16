@@ -57,8 +57,8 @@ def download(year,month,day,hour):
     hour_str = "%02d" % hour
     current_hour=hour
     print("Downloading "+year_str+"/"+month_str+"/"+day_str+"  " + hour_str + ":00")
-    url="http://ondemand.radioflaixbac.cat/podcast/" + year_str + month_str + day_str + hour_str + "0002.mp3?force_download"
-
+    url="https://ondemand.flaixbac.cat/podcast/" + year_str + month_str + day_str + hour_str + "0002.mp3?force_download"
+    
     filename=get_filename(year,month,day,hour)
     
     # if filename exists then skip
